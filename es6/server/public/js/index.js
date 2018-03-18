@@ -77,16 +77,69 @@ module.exports = __webpack_require__(1);
 "use strict";
 
 
+var _modules = __webpack_require__(2);
+
+var _modules2 = _interopRequireDefault(_modules);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// console.info(A, test, Hello);
+console.info(_modules2.default.A, _modules2.default.test); // import  {A, test, Hello} from './class/17-modules';
+// import { A } from './class/17-modules';
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Test = function Test() {
-  _classCallCheck(this, Test);
+// export let A = 123;
 
-  this.a = 'hello world';
+// export function test() {
+//   console.info('test');
+// }
+
+// export class Hello {
+//   test() {
+//     console.log('class');
+//   }
+// }
+
+var A = 123;
+
+function test() {
+  console.info('test');
+}
+
+var Hello = function () {
+  function Hello() {
+    _classCallCheck(this, Hello);
+  }
+
+  _createClass(Hello, [{
+    key: 'test',
+    value: function test() {
+      console.log('class');
+    }
+  }]);
+
+  return Hello;
+}();
+
+exports.default = {
+  A: A,
+  test: test,
+  Hello: Hello
 };
-
-var test = new Test();
-document.body.innerHTML = test.a;
 
 /***/ })
 /******/ ]);
