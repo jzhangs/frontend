@@ -10,19 +10,27 @@
         {{item.label}}
       </li>
     </ul>
+    <p>child tells me: {{ childWords }}</p>
+    <component-a msgfromfater="you die!" v-on:child-tell-me-something='listenToMyBody'/>
   </div>
 </template>
 
 <script>
-import Store from './store';
+import Store from "./store";
+import ComponentA from "./components/a";
 
 export default {
   data() {
     return {
       title: "this is a todo list",
       items: Store.fetch(),
-      newItem: ""
+      newItem: "",
+      childWords: ""
     };
+  },
+
+  components: {
+    ComponentA
   },
 
   watch: {
@@ -44,8 +52,12 @@ export default {
         label: this.newItem,
         isFinished: false
       });
-      
+
       this.newItem = "";
+    },
+
+    listenToMyBody(msg) {
+      this.childWords = msg;
     }
   }
 };
