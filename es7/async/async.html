@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>async</title>
+</head>
+
+<body>
+  <p> async/await</p>
+
+  <script>
+    // var sleep = function (time) {
+    //   return new Promise(function (resolve, reject) {
+    //     setTimeout(function () {
+    //       resolve();
+    //     }, time);
+    //   })
+    // };
+
+    // var start = async function () {
+    //   console.log('start');
+    //   await sleep(3000);
+    //   console.log('end');
+    // };
+
+    // start();
+
+    function loadImg(src) {
+      var promise = new Promise(function (resolve, reject) {
+        var img = document.createElement('img')
+        // throw new Error('error !!');
+        img.onload = function () {
+          resolve(img)
+        }
+        img.onerror = function () {
+          reject('load fail');
+        }
+        img.src = src
+      })
+      return promise
+    }
+
+    const src1 = 'https://www.imooc.com/static/img/index/logo_new.png'
+    const src2 = 'https://img1.mukewang.com/545862fe00017c2602200220-100-100.jpg'
+
+    const load = async () => {
+      const result1 = await loadImg(src1);
+      console.info(result1);
+      const result2 = await loadImg(src2);
+      console.info(result2);
+    }
+    load();
+  </script>
+
+</body>
+
+</html>

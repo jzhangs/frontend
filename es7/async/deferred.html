@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>deferred</title>
+</head>
+
+<body>
+    <p>deferred test</p>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        // var wait = function () {
+        //     var task = function () {
+        //         console.log('done')
+        //     }
+        //     setTimeout(task, 2000)
+        // }
+        // wait()
+
+        function waitHandle() {
+            var dtd = $.Deferred()
+            var wait = function (dtd) {
+                var task = function () {
+                    console.log('done')
+                    // success
+                    dtd.resolve()
+                    // fail
+                    // dtd.reject()
+                }
+                setTimeout(task, 1000)
+                // wait return
+                // don't return dtd directly
+                // return dtd
+                return dtd.promise()
+            }
+            return wait(dtd)
+        }
+
+        var w = waitHandle()
+        // $.when(w).then(function () {
+        //     console.log('ok 1')
+        // }, function () {
+        //     console.log('err 1')
+        // })
+
+        // w.reject();  // w.reject is not a function (if return dtd.promise());
+        w.then(function () {
+        // $.when(w).then(function() {
+            console.log('ok 1')
+        }, function () {
+            console.log('err 1')
+        })
+        
+        w.then(() => {
+            console.info('ok 2')
+        }, () => {
+            console.info('err 2')
+        })
+
+    </script>
+</body>
+
+</html>
