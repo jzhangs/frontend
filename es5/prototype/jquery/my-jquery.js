@@ -1,0 +1,31 @@
+(function(window) {
+  var jQuery = function(selector) {
+    return new jQuery.fn.init(selector);
+  };
+
+  jQuery.fn = jQuery.prototype = {
+    css: function(key, value) {
+      console.info(`jquery css, ${key}: ${value}`);
+    },
+    html: function(value) {
+      return 'mock jquery html';
+    }
+  };
+
+  var init = (jQuery.fn.init = function(selector) {
+    var slice = Array.prototype.slice;
+    var dom = slice.call(document.querySelectorAll(selector));
+
+    var i,
+      len = dom ? dom.length : 0;
+    for (i = 0; i < len; i++) {
+      this[i] = dom[i];
+    }
+    this.length = len;
+    this.selector = selector || '';
+  });
+
+  init.prototype = jQuery.fn;
+
+  window.$ = jQuery;
+})(window);
