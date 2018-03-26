@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>defineProperty</title>
+</head>
+
+<body>
+  <p>test Obejct.defineProperty</p>
+
+  <script>
+    // var obj = {
+    //   name: 'zhangsan',
+    //   age: 25
+    // }
+    // console.log(obj);
+
+    // var obj = {};
+    // var _name = 'zhangsan';
+    // Object.defineProperty(obj, 'name', {
+    //   get: function () {
+    //     console.log('get', _name);
+    //     return _name;
+    //   },
+    //   set: function (newVal) {
+    //     console.log('set', newVal);
+    //     _name = newVal;
+    //   }
+    // });
+
+    var mv = {};
+    var data = {
+      name: 'zhangsan',
+      age: 25
+    };
+    var key, value;
+    for (key in data) {
+      (function (key) {
+        Object.defineProperty(mv, key, {
+          get: function() {
+            console.log('get');
+            return data[key];
+          },
+
+          set: function(newVal) {
+            console.log('set');
+            data[key] = newVal;
+          }
+        })
+      })(key);
+    }
+  </script>
+</body>
+
+</html>
