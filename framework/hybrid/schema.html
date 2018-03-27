@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>hybrid</title>
+</head>
+
+<body>
+  <button id="btn1">scan</button>
+  <button id="btn2">share</button>
+
+  <script src="./invoke.js"></script>
+  <script>
+
+    // window['_invoke_scan_callback'] = function (result) {
+    //   console.info(result);
+    // }
+
+    // function invokeScan() {
+    //   var iframe = document.createElement('iframe');
+    //   iframe.style.display = 'none';
+    //   // iframe.src = 'weixin://dl/scan';
+    //   iframe.src = 'weixin://dl/scan?k1=v1&k2=v2&k3=v3&callback=_invoke_scan_callback';
+    //   var body = document.body;
+    //   body.appendChild(iframe);
+    //   setTimeout(
+    //     function () {
+    //       body.removeChild(iframe);
+    //       iframe = null;
+    //     }
+    //   );
+    // }
+    document.getElementById('btn1').addEventListener('click', function () {
+      window.invoke.scan();
+    });
+    document.getElementById('btn2').addEventListener('click', function () {
+      window.invoke.share({
+        title: 'xxx',
+        content: 'yyy'
+      }, function(result) {
+        if (result.errno === 0) {
+          console.info('share success');
+        } else {
+          console.info(result.message);
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>
