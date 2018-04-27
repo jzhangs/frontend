@@ -9,7 +9,9 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions,
+  PixelRatio
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -19,19 +21,28 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const { height, width } = Dimensions.get('window');
+const pixelRatio = PixelRatio.get();
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    let aValue;
+    console.log('Render has been executed.');
+    console.log('Screen height is: ' + height);
+    console.log('aValue is: ' + aValue);
+    console.log('The type of aValue is: ' + typeof(aValue));
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          One logic pixel equals {pixelRatio} physical pixel
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+          Height of device is {height} logic pixel
         </Text>
         <Text style={styles.instructions}>
-          {instructions}
+          Width of device is {width} logic pixel
         </Text>
       </View>
     );
