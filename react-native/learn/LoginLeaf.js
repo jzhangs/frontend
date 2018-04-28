@@ -5,7 +5,17 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Dimensions, PixelRatio, TextInput, Alert } from 'react-native';
+import {
+  NativeModules,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  PixelRatio,
+  TextInput,
+  Alert
+} from 'react-native';
 
 const inputHeight = Platform.select({
   ios: 60,
@@ -43,7 +53,10 @@ export default class LoginLeaf extends Component<Props> {
     ]);
   };
 
-  userPressAddressBook = () => {};
+  userPressAddressBook = () => {
+    const { ExampleInterface } = NativeModules;
+    ExampleInterface.sendMessaget('{ "msgType":"pickContact" }');
+  };
 
   render() {
     return (
